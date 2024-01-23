@@ -42,7 +42,7 @@ app.get('/books/', async (request, response) => {
 // Get Users API
 app.post('/users/', async (request, response) => {
   const {username, name, password, gender, location} = request.body
-  const hashedPassword = await bcrypt.hash(request.body.password, 10)
+  const hashedPassword = await bcrypt.hash(password, 10)
   const selectUserQuery = `SELECT * FROM user WHERE username = '${username}'`
   const dbUser = await db.get(selectUserQuery)
   if (dbUser === undefined) {
